@@ -1,0 +1,23 @@
+<!-- Modify the Orders table -->
+ALTER TABLE Orders DROP COLUMN orderDate;
+ALTER TABLE Orders ADD COLUMN orderInfo VARCHAR(255);
+
+<!-- Find the employee information whose name contains the substring 'Sha': -->
+SELECT * FROM Employee WHERE name LIKE '%Sha%';
+
+<!-- Find orderID and orderDate where orderTotal is more than 500: -->
+SELECT orderID, orderDate FROM Orders WHERE orderTotal > 500;
+
+<!-- Find order information and product information where the employee is 'Shakib' -->
+SELECT o.*, p.* 
+FROM Orders o
+JOIN Product p ON o.productID = p.productID
+JOIN Employee e ON o.employeeID = e.employeeID
+WHERE e.name = 'Shakib';
+
+<!-- Find order information for all customers according to the alphabetic order of their name: -->
+SELECT o.* 
+FROM Orders o
+JOIN Customer c ON o.customerID = c.customerID
+ORDER BY c.name;
+
